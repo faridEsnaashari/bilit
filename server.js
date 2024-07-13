@@ -25,3 +25,4 @@ https://pwa.snapptrip.com/bus/search?origin=11320000&originCity=%D8%AA%D9%87%D8%
 
 setInterval(check,60*1000)
 check()
+console.log("started");
