@@ -12,6 +12,7 @@ ${(new Date()).toLocaleTimeString()}
       ${s.departureTime}
 https://pwa.snapptrip.com/bus/search?origin=11320000&originCity=%D8%AA%D9%87%D8%B1%D8%A7%D9%86&dest=21310000&destCity=%D8%A7%D8%B5%D9%81%D9%87%D8%A7%D9%86&date=2024-07-14&abroad=false
       `
+      console.log(text);
       await axios.post(`https://api.telegram.org/bot1143862654:AAGhppoql_wjQzJ-SXCDS1ZA98lFLgbbvBQ/sendMessage?`,{chat_id:58235922,text})
 
       seen.push((s.departureTime+s.provider+s.originTerminal.name+s.destinationTerminal.name).toString())
