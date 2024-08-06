@@ -16,10 +16,10 @@
   "dependencies": {
     "axios": "^1.7.2",
     "dayjs": "^1.11.12",
-    "jalaliday": "^2.3.0"
+    "jalaliday": "^2.3.0",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
-    "dotenv": "^16.4.5",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^9.0.0",
     "husky": "^9.0.11",
