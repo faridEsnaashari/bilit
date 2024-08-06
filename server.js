@@ -1,7 +1,7 @@
 const fetchBuses = require("./services/providers/fetch-buses.service");
 
 (async () => {
-  r = await Promise.all(fetchBuses(11320000, 21310000, "2024-07-15"));
+  r = await Promise.all(fetchBuses(11320000, 21310000, "2024-07-30"));
   console.log(r);
 })();
 //
