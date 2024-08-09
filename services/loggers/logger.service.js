@@ -8,7 +8,10 @@ function telegramLogger(texts) {
   texts.forEach((t) => bot(t));
 }
 
-const loggers = [{ logger: telegramLogger, mapper: telegramMapper }];
+const loggers = [
+  { logger: telegramLogger, mapper: telegramMapper },
+  { logger: (data) => console.log(data), mapper: (data) => data },
+];
 
 function log(data) {
   loggers.forEach((l) => l.logger(l.mapper(data)));
