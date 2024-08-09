@@ -2,8 +2,8 @@ const log = require("./services/loggers/logger.service");
 const { fetchBuses } = require("./services/providers/fetch-buses.service");
 
 setTimeout(async () => {
-  const today = await fetchBuses(11320000, 21310000, "2024-08-07");
-  const tomorrow = await fetchBuses(11320000, 21310000, "2024-08-08");
+  const today = await fetchBuses(21310000, 11320000, "2024-08-09");
+  const tomorrow = await fetchBuses(21310000, 11320000, "2024-08-10");
 
   log(today);
   log(tomorrow);
