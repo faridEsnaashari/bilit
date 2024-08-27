@@ -1,7 +1,7 @@
 const logger = require("../../../pino/pino");
 
 async function log(data) {
-  logger(data);
+  logger.info(data);
 }
 
 module.exports = log;
