@@ -1,17 +1,22 @@
-const config = require("./telegram/config");
-const getTelegramBot = require("./telegram/driver/telegram.driver");
-const telegramMapper = require("./telegram/mappers/telegram.mapper");
+const telegramLogger = require("./telegram/telegram.logger");
+const consoleLogger = require("./console/console.logger");
+const configs = require("./configs/configs.service");
 
-function telegramLogger(texts) {
-  const bot = getTelegramBot(config.botSecret)(config.chatId);
+function logger(loggers, configs = {}) {
+  return function (data) {
+    let logs = { ...data };
 
-  texts.forEach((t) => bot(t));
+    if (configs.filters?.length > 0) {
+      configs.filters.forEach((filterFn) => (logs = filterFn(logs)));
+    }
+
+    loggers.forEach(({ logger, mapper }) => logger(mapper(logs)));
+  };
 }
 
-const loggers = [{ logger: telegramLogger, mapper: telegramMapper }];
-
-function log(data) {
-  loggers.forEach((l) => l.logger(l.mapper(data)));
-}
-
-module.exports = log;
+module.exports = {
+  logger,
+  telegramLogger,
+  consoleLogger,
+  configs,
+};

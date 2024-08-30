@@ -1,10 +1,20 @@
-const log = require("./services/loggers/logger.service");
+const { destCity, originCity, interval, date } = require("./config");
+const {
+  logger,
+  consoleLogger,
+  telegramLogger,
+  configs,
+} = require("./services/loggers/logger.service");
 const { fetchBuses } = require("./services/providers/fetch-buses.service");
 
 setInterval(async () => {
-  const today = await fetchBuses(11320000, 21310000, "2024-08-20");
-  const tomorrow = await fetchBuses(21310000, 11320000, "2024-08-10");
+  const today = await fetchBuses(originCity, destCity, date);
 
-  log(today);
-  log(tomorrow);
-}, 1000);
+  const allLogs = logger([consoleLogger]);
+  const onlyUniqueBusses = logger([telegramLogger], {
+    filters: [configs.filters.onlyNotLoggedBusses],
+  });
+
+  allLogs(today);
+  onlyUniqueBusses(today);
+}, interval);
