@@ -2,67 +2,46 @@ const { logger, configs } = require("./logger.service");
 
 let logs = [];
 
-const mock1 = {
-  busses: [
-    {
-      data: [
-        {
-          originTerminal: "fromTest",
-          destTerminal: "toTest",
-          time: "00:30:00",
-          date: "2024-07-30",
-        },
-      ],
-      id: "id2",
-    },
-    {
-      data: [
-        {
-          originTerminal: "fromTest",
-          destTerminal: "toTest",
-          time: "00:30:00",
-          date: "2024-07-30",
-        },
-      ],
-      id: "id1",
-    },
-  ],
-  errors: [{ data: [], id: "id2" }],
-};
+const mock1 = [
+  {
+    originTerminal: "fromTest",
+    destTerminal: "toTest",
+    time: "00:30:00",
+    date: "2024-07-30",
+    id: "id2",
+  },
+  {
+    originTerminal: "fromTest",
+    destTerminal: "toTest",
+    time: "00:30:00",
+    date: "2024-07-30",
+    id: "id1",
+  },
+];
 
-const mock2 = {
-  busses: [
-    {
-      data: [
-        {
-          originTerminal: "fromTest",
-          destTerminal: "toTest",
-          time: "00:50:00",
-          date: "2024-07-30",
-        },
-      ],
-      id: "id2",
-    },
-    {
-      data: [
-        {
-          originTerminal: "fromTest",
-          destTerminal: "toTest",
-          time: "00:30:00",
-          date: "2024-07-30",
-        },
-        {
-          originTerminal: "fromTest",
-          destTerminal: "toTest",
-          time: "00:40:00",
-          date: "2024-07-30",
-        },
-      ],
-      id: "id1",
-    },
-  ],
-  errors: [{ data: [], id: "id2" }],
-};
+const mock2 = [
+  {
+    originTerminal: "fromTest",
+    destTerminal: "toTest",
+    time: "00:50:00",
+    date: "2024-07-30",
+    id: "id2",
+  },
+  {
+    originTerminal: "fromTest",
+    destTerminal: "toTest",
+    time: "00:30:00",
+    date: "2024-07-30",
+    id: "id1",
+  },
+  {
+    originTerminal: "fromTest",
+    destTerminal: "toTest",
+    time: "00:40:00",
+    date: "2024-07-30",
+    id: "id1",
+  },
+];
 
 it("should apply filter configs", () => {
   const log = logger(
@@ -73,33 +52,22 @@ it("should apply filter configs", () => {
   log(mock1);
   log(mock2);
 
-  expect(logs[1]).toEqual({
-    busses: [
-      {
-        data: [
-          {
-            originTerminal: "fromTest",
-            destTerminal: "toTest",
-            time: "00:50:00",
-            date: "2024-07-30",
-          },
-        ],
-        id: "id2",
-      },
-      {
-        data: [
-          {
-            originTerminal: "fromTest",
-            destTerminal: "toTest",
-            time: "00:40:00",
-            date: "2024-07-30",
-          },
-        ],
-        id: "id1",
-      },
-    ],
-    errors: [{ data: [], id: "id2" }],
-  });
+  expect(logs[1]).toEqual([
+    {
+      originTerminal: "fromTest",
+      destTerminal: "toTest",
+      time: "00:50:00",
+      date: "2024-07-30",
+      id: "id2",
+    },
+    {
+      originTerminal: "fromTest",
+      destTerminal: "toTest",
+      time: "00:40:00",
+      date: "2024-07-30",
+      id: "id1",
+    },
+  ]);
 });
 
 let logs1 = [];
@@ -111,37 +79,27 @@ it("should return all data", () => {
   log(mock1);
   log(mock2);
 
-  expect(logs1[1]).toEqual({
-    busses: [
-      {
-        data: [
-          {
-            originTerminal: "fromTest",
-            destTerminal: "toTest",
-            time: "00:50:00",
-            date: "2024-07-30",
-          },
-        ],
-        id: "id2",
-      },
-      {
-        data: [
-          {
-            originTerminal: "fromTest",
-            destTerminal: "toTest",
-            time: "00:30:00",
-            date: "2024-07-30",
-          },
-          {
-            originTerminal: "fromTest",
-            destTerminal: "toTest",
-            time: "00:40:00",
-            date: "2024-07-30",
-          },
-        ],
-        id: "id1",
-      },
-    ],
-    errors: [{ data: [], id: "id2" }],
-  });
+  expect(logs1[1]).toEqual([
+    {
+      originTerminal: "fromTest",
+      destTerminal: "toTest",
+      time: "00:50:00",
+      date: "2024-07-30",
+      id: "id2",
+    },
+    {
+      originTerminal: "fromTest",
+      destTerminal: "toTest",
+      time: "00:30:00",
+      date: "2024-07-30",
+      id: "id1",
+    },
+    {
+      originTerminal: "fromTest",
+      destTerminal: "toTest",
+      time: "00:40:00",
+      date: "2024-07-30",
+      id: "id1",
+    },
+  ]);
 });
