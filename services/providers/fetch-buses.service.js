@@ -2,6 +2,7 @@ const snapFetchBuses = require("./snap-trip/driver/snap-trip.driver");
 const mrBilitFetchBuses = require("./mrbilit/driver/mrbilit.driver");
 const snapMapper = require("./snap-trip/mappers/snap-trip.mapper");
 const mrBilitMapper = require("./mrbilit/mappers/mrbilit.mapper");
+const leftRightBusErrorFormatter = require("./configs/formaters/left-right-bus-error.formater");
 
 const createFetchBuses = (providers) => async (from, to, date) => {
   const results = await Promise.all(
@@ -14,14 +15,7 @@ const createFetchBuses = (providers) => async (from, to, date) => {
     }),
   );
 
-  return {
-    busses: results
-      .filter((r) => r.data.success)
-      .map((r) => ({ data: r.data.data, id: r.id })),
-    errors: results
-      .filter((r) => !r.data.success)
-      .map((r) => ({ data: r.data.data, id: r.id })),
-  };
+  return leftRightBusErrorFormatter(results);
 };
 const fetchBuses = createFetchBuses([
   { fetchBuses: snapFetchBuses, id: "SNAP_TRIP", mapper: snapMapper },

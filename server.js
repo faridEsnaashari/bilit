@@ -15,6 +15,6 @@ setInterval(async () => {
     filters: [configs.filters.onlyNotLoggedBusses],
   });
 
-  allLogs(today);
-  onlyUniqueBusses(today);
+  allLogs(today.busses);
+  onlyUniqueBusses(today.busses);
 }, interval);

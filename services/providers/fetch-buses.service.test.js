@@ -36,17 +36,13 @@ test("currect return value", async () => {
   expect(await fetchBuses(11320000, 21310000, "2024-07-30")).toEqual({
     busses: [
       {
-        data: [
-          {
-            originTerminal: "fromTest",
-            destTerminal: "toTest",
-            time: "00:30:00",
-            date: "2024-07-30",
-          },
-        ],
+        originTerminal: "fromTest",
+        destTerminal: "toTest",
+        time: "00:30:00",
+        date: "2024-07-30",
         id: "TP1",
       },
     ],
-    errors: [{ data: [], id: "TP2" }],
+    errors: [{ id: "TP2" }],
   });
 });

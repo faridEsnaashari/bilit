@@ -2,29 +2,8 @@ const dayjs = require("../../../dayjs/dayjs.service");
 
 let seenBusses = [];
 
-function filter(data) {
-  const busses = data.busses.map((bus) => {
-    const filteredBusses = bus.data.filter((b) =>
-      filterBusses({ ...b, providerId: bus.id }),
-    );
-
-    return { ...bus, data: [...filteredBusses] };
-  });
-
-  return {
-    ...data,
-    busses,
-  };
-}
-
-function filterBusses({
-  originTerminal,
-  destTerminal,
-  time,
-  date,
-  providerId,
-}) {
-  const key = `${originTerminal}:${destTerminal}:${time}:${date}:${providerId}`;
+function filter({ originTerminal, destTerminal, time, date, id }) {
+  const key = `${originTerminal}:${destTerminal}:${time}:${date}:${id}`;
 
   memoryResetOn();
 
@@ -59,7 +38,6 @@ function memoryResetOn() {
 
 module.exports = {
   filter,
-  filterBusses,
   getSeenBusFromMemory,
   setSeenBusFromMemory,
   memoryResetOn,

@@ -4,10 +4,13 @@ const configs = require("./configs/configs.service");
 
 function logger(loggers, configs = {}) {
   return function (data) {
-    let logs = { ...data };
+    let logs = [...data];
 
     if (configs.filters?.length > 0) {
-      configs.filters.forEach((filterFn) => (logs = filterFn(logs)));
+      logs = configs.filters.reduce(
+        (prev, filterFn) => prev.filter(filterFn),
+        logs,
+      );
     }
 
     loggers.forEach(({ logger, mapper }) => logger(mapper(logs)));
