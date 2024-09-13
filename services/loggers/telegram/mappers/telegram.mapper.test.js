@@ -18,7 +18,7 @@ it("should return this", () => {
         date: "2024-07-30",
         id: "TP1",
       },
-    ])
+    ]),
   ).toEqual([
     "\n" +
       `      ${time}\n` +

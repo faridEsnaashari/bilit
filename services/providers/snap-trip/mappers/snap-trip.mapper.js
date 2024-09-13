@@ -5,12 +5,14 @@ function mapper(data) {
 
   return {
     success: true,
-    data: data.solutions.map((s) => ({
-      originTerminal: s.originTerminal?.name || "unknown",
-      destTerminal: s.destinationTerminal?.name || "unknown",
-      time: s.departureTime,
-      date: data.date,
-    })),
+    data: data.solutions
+      .filter((s) => s.capacity > 0)
+      .map((s) => ({
+        originTerminal: s.originTerminal?.name || "unknown",
+        destTerminal: s.destinationTerminal?.name || "unknown",
+        time: s.departureTime,
+        date: data.date,
+      })),
   };
 }
 

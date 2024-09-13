@@ -94,7 +94,7 @@ test("success output structure: ", async () => {
         originTerminal: [Object],
         destinationTerminal: [Object],
         busDescription: "اتوبوس وی ای پی ",
-        capacity: 0,
+        capacity: 2,
         price: 2560000,
         finalPrice: 2560000,
         discount: "0",
@@ -115,7 +115,7 @@ test("success output structure: ", async () => {
         originTerminal: [Object],
         destinationTerminal: [Object],
         busDescription: "مان 26 نفره VIP",
-        capacity: 0,
+        capacity: 1,
         price: 2560000,
         finalPrice: 2560000,
         discount: "0",
@@ -162,7 +162,7 @@ test("success output structure: ", async () => {
 
   if (data.success) {
     expect(data).toMatchObject({ success: true });
-    expect(data.data.length).toBeGreaterThan(0);
+    expect(data.data.length).toBe(2);
   } else {
     expect(data).toEqual({ success: false, data: [] });
   }
